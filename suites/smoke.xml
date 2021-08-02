@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Fravega Development Tests" thread-count="4" >
+    <test name="Smoke Home on Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.fravega.automation.tests.Home"/>
+        </classes>
+    </test>
+    <test name="Smoke API">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.fravega.automation.tests.API"/>
+        </classes>
+    </test>
+</suite>
