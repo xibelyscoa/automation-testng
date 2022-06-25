@@ -35,7 +35,7 @@ public class API {
                         Assert.assertEquals(brewing.get("name"),"Lagunitas Brewing Co");
                         Assert.assertEquals(brewing.get("street"),"1280 N McDowell Blvd");
                         Assert.assertEquals(brewing.get("phone"),"7077694495");
-                        Assert.assertEquals(brewing.get("id"),761);
+                        Assert.assertEquals(brewing.get("id"),"lagunitas-brewing-co-petaluma");
                         Allure.step("'Lagunitas Brewing Co' está OK", Status.PASSED);
                     }
                 }else {
