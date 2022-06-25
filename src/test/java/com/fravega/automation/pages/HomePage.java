@@ -11,16 +11,16 @@ import org.testng.Assert;
 import java.util.List;
 
 public class HomePage extends BasePage{
-    private final By CLOSE_BT = By.xpath("//html[1]/body[1]/div[3]/div[1]/div[2]/button[1]");
-    private final By CLOSE_DIV = By.xpath("//html[1]/body[1]/div[3]/div[1]");
+    private final By CLOSE_BT = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]");
+    private final By CLOSE_DIV = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]");
 
-    private final By SEARCH_INPUT = By.xpath("//html[1]/body[1]/div[1]/div[1]/header[1]/div[2]/form[1]/fieldset[1]/div[1]/input[1]");
+    private final By SEARCH_INPUT = By.xpath("/html[1]/body[1]/div[1]/div[2]/header[1]/div[2]/form[1]/fieldset[1]/div[1]/input[1]");
 
-    private final By SEARCH_BT = By.xpath("//html[1]/body[1]/div[1]/div[1]/header[1]/div[2]/form[1]/fieldset[1]/div[1]/button[1]");
+    private final By SEARCH_BT = By.xpath("/html[1]/body[1]/div[1]/div[2]/header[1]/div[2]/form[1]/fieldset[1]/div[1]/button[1]");
 
-    private final By ITEMS_GRID = By.xpath("//html/body/div/div/div/div/div/div/section/ul/li/article/a/div/div/h3");
+    private final By ITEMS_GRID = By.xpath("/html/body/div/div/div/div/ul/li/article/a[1]/div[1]/div[1]/span[1]");
 
-    private final By BREADCRUMB = By.xpath("//html/body/div/div/div[3]/div/div/div/ol/li");
+    private final By BREADCRUMB = By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/div[2]/div[1]/ol[1]/li");
 
     int TIMEOUT = 10;
 
@@ -43,14 +43,13 @@ public class HomePage extends BasePage{
     @Step("Buscando {0}")
     public void search(String words) {
         System.out.println("Searching \"" + words + "\"...");
-        driver.findElement(SEARCH_BT).click();
         driver.findElement(SEARCH_INPUT).sendKeys(words);
         driver.findElement(SEARCH_BT).click();
     }
 
     @Step("Seleccionando categoría {0}")
     public void selectCategory(String category) throws Exception {
-        By categorySearch = By.xpath("//h4[text()[contains(.,'" + category + " (')]]");
+        By categorySearch = By.xpath("//a[contains(text(),'" + category + " (')]");
         clickElement(categorySearch, TIMEOUT);
     }
 
@@ -63,6 +62,7 @@ public class HomePage extends BasePage{
         }
         for (int i = 0; i < breadcrumb.size(); i++) {
             String item = breadcrumb.get(i).getText().trim().toLowerCase();
+            Allure.step("No se encontró breadcrumb", Status.FAILED);
             if (item.compareTo(category.trim().toLowerCase()) == 0) {
                 found = true;
             }
@@ -74,9 +74,10 @@ public class HomePage extends BasePage{
     @Step("Seleccionando {0}° marca")
     public void selectBrand(int choice) throws Exception {
         By brandSearch = By.xpath("//*[@name='brandAggregation']");
-        By brandTitle = By.xpath("//*[@name='brandsFilter']");
+        By brandTitle = By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/div[4]/div[2]/h3[1]");
 
         scrollToElement(brandTitle);
+        sleep(5000);
 
         List<WebElement> brands = driver.findElements(brandSearch);
 

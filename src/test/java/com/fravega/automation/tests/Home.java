@@ -2,33 +2,33 @@ package com.fravega.automation.tests;
 
 import com.fravega.automation.pages.HomePage;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 
+@Epic("Búsqueda de artículos")
 public class Home extends Base{
 
     @Test()
     public void searchHeladera() throws Exception {
-        String searchKeyqords = "heladera";
-        String searchCategory = "Heladeras";
-        search(searchKeyqords,searchCategory);
+        search("heladera","Heladeras");
     }
 
     @Test()
     public void searchSamsungTV() throws Exception {
-        String searchKeyqords = "samsung";
-        String searchCategory = "TV";
-        search(searchKeyqords,searchCategory);
+        search("samsung","TV");
     }
 
     @Test()
     public void searchNotebook() throws Exception {
-        String searchKeyqords = "core i7";
-        String searchCategory = "Notebooks";
-        search(searchKeyqords,searchCategory);
+        search("core i7","Notebooks");
     }
 
+    @Test()
+    public void searchColchon() throws Exception {
+        search("colchon","Colchones y sommiers");
+    }
 
     @Description("Buscar '{0}  {1}'")
     @Severity(SeverityLevel.BLOCKER)

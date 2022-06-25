@@ -13,7 +13,7 @@ public class Base {
     @BeforeSuite()
     public void setUp() {
         String resources = "/src/resources/";
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + resources + "chromedriver");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + resources + "chromedriver.exe");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-default-browser-check");
