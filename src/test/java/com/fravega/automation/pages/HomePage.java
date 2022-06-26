@@ -22,6 +22,8 @@ public class HomePage extends BasePage{
 
     private final By BREADCRUMB = By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/div[2]/div[1]/ol[1]/li");
 
+    private final By MY_ACCOUNT_BT = By.xpath("/html[1]/body[1]/div[1]/div[2]/header[1]/div[2]/div[2]/div[1]/a[1]/div[1]");
+
     int TIMEOUT = 10;
 
     public HomePage(WebDriver driver) {
@@ -102,5 +104,11 @@ public class HomePage extends BasePage{
             Assert.assertTrue(title.contains(brandName));
         }
         Allure.step("Seleccionado exitósamente!", Status.PASSED);
+    }
+
+    @Step("Abrir Mi Cuenta")
+    public void clickMyAccount() throws Exception {
+        System.out.println("abriendo la sección Mi Cuenta");
+        clickElement(MY_ACCOUNT_BT, TIMEOUT);
     }
 }
